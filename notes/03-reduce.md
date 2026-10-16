@@ -1,0 +1,47 @@
+# 03 Reduce：归约的四种写法
+
+代码：`src/reduce.cu`。把 2²⁶ 个 float（256 MB）加成一个数。
+
+## 版本对比
+
+| 版本 | 做法 | 问题或改进 |
+|---|---|---|
+| v0 交错寻址 | stride 从 1 开始翻倍，`tid % (2*stride) == 0` 的线程干活 | ① warp 分歧：同一个 warp 里只有部分线程干活；② `%` 运算慢；③ stride 变大后共享内存访问出现 bank conflict |
+| v1 顺序寻址 | stride 从 blockDim/2 开始减半，`tid < stride` 的线程干活 | 干活的线程是连续的，整个 warp 要么全干要么全不干；相邻线程访问相邻地址，没有 bank conflict |
+| v2 shuffle | 只启动 SM 数×8 个 block；每个线程用网格跨步循环累加很多个 float4；最后 warp shuffle + 32 个 float 的共享内存 | ① 每个线程干的活变多，block 调度和 atomic 的开销被摊薄；② float4 减少访存指令数；③ shuffle 在寄存器间交换，不经过共享内存，也不需要每轮 `__syncthreads` |
+| cub | NVIDIA 官方库 `cub::DeviceReduce::Sum` | 用作参照 |
+
+## 关键点
+
+- Reduce 的计算访存比只有 0.25，完全受显存带宽限制。**理想情况下，耗时 ≈ 数据量 ÷ 带宽**。所以用 GB/s 衡量，并和实测拷贝带宽对比。
+- 拷贝带宽（`measure_copy_bandwidth_gbs`）同时计入读和写，而 reduce 只读不写。两者的硬件效率略有不同，"占拷贝带宽的百分比"是个近似参照，不是严格上限。
+- 浮点加法不满足结合律：不同的归约顺序结果会有微小差别；用 atomicAdd 时，每次运行的结果甚至可能不一样（不确定性）。所以正确性用相对误差判断（< 1e-4）。
+
+## 面试高频问题
+
+**Q1：什么是 bank conflict？怎么消除？**（寒武纪面经原题）
+- 共享内存分成 32 个 bank，每个 bank 宽 4 字节，地址按 4 字节轮流分到各个 bank（地址 ÷ 4 再 mod 32）。
+- 同一个 warp 里的多个线程，同时访问**同一个 bank 里的不同地址**，访问就要拆成多次串行完成，这就是 bank conflict。访问**同一个地址**是广播，不算冲突。
+- 消除方法：① 改访问模式，让相邻线程访问相邻地址（本例 v0 → v1）；② padding，每行多留一个元素（见 06 转置）；③ swizzle，用 XOR 重排地址（CUTLASS 常用）。
+
+**Q2：warp shuffle 比共享内存好在哪？**
+- 数据直接在寄存器之间交换，延迟更低，不占共享内存，也不需要 `__syncthreads`（同一个 warp 内本来就同步执行，用 `_sync` 加 mask 保证正确性）。
+- `__shfl_xor_sync` 做的是"蝶形"交换，5 轮之后 32 个 lane 都拿到总和；`__shfl_down_sync` 只有 lane 0 拿到正确结果。
+
+**Q3：grid 为什么设成 SM 数 × 8，而不是 N/256？**
+- 一个 block 只处理 256 个数的话，block 太多，调度和最后 atomicAdd 的开销占比会很大。
+- 让每个 SM 驻留几个 block，每个线程处理很多个元素（网格跨步循环），访存可以流水起来，也只需要很少的 atomic。
+
+## 跑完后填写
+
+| 版本 | GB/s | 占拷贝带宽 |
+|---|---|---|
+| v0 |  |  |
+| v1 |  |  |
+| v2 |  |  |
+| cub |  |  |
+
+## 练习
+
+1. 把 v2 的 grid 改成 `num_sms * 2` 和 `num_sms * 32`，画出 grid 大小和带宽的关系。
+2. 去掉 v2 的 float4，改成一次读一个 float，比较带宽。

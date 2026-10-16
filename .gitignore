@@ -1,0 +1,4 @@
+build/
+results/ncu/*.ncu-rep
+*.o
+__pycache__/

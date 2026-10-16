@@ -1,0 +1,6 @@
+[ 16%] Built target sgemm
+[ 33%] Built target transpose
+[ 50%] Built target rmsnorm
+[ 66%] Built target hgemm_wmma
+[ 83%] Built target softmax
+[100%] Built target reduce

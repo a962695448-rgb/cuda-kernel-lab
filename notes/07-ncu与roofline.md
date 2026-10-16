@@ -1,5 +1,7 @@
 # 07 用 Nsight Compute 和 roofline 回答“为什么快”
 
+> **实测环境说明**：2026-10-16 租用的 RTX 5090 云服务器在宿主机层面关闭了 GPU 性能计数器，ncu 报 `ERR_NVGPUCTRPERM`，所以本仓库暂时没有 ncu 指标。替代做法是控制变量实验，比如把数据缩小到能放进 L2 来暴露 bank conflict（见 06）。换一台允许 profiling 的机器后，运行 `scripts/ncu_profile.sh` 即可补齐。
+
 面试里说"我优化了 3 倍"不够，要能回答："瓶颈在哪？你怎么知道的？"本篇用到的工具：`scripts/ncu_profile.sh`。
 
 ## 两个工具
@@ -26,7 +28,7 @@
 ## roofline 怎么讲
 
 - 横轴是计算访存比（FLOP/B），纵轴是达到的 FLOP/s。
-- 屋顶由两条线组成：斜线是"带宽 × AI"，平线是峰值算力，两条线在拐点（4090 约 82 FLOP/B）相交。
+- 屋顶由两条线组成：斜线是"带宽 × AI"，平线是峰值算力，两条线在拐点（5090 约 58 FLOP/B）相交。
 - 每个 kernel 是图上的一个点：在斜线下方说明访存受限，在平线下方说明计算受限；离屋顶越近，效率越高。
 - `ncu --set full` 生成的报告里有现成的 roofline 图（GPU Speed Of Light 页），下载 `.ncu-rep` 文件后，用本地的 Nsight Compute 图形界面打开就能看到。
 

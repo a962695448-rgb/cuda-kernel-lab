@@ -1,0 +1,4 @@
+op,version,M,N,ms,gbs,pct_copy_bw,check
+transpose,v0_naive,2048,2048,0.0440,763.2,50.2,PASS
+transpose,v1_smem_conflict,2048,2048,0.0144,2325.0,152.8,PASS
+transpose,v2_smem_padded,2048,2048,0.0083,4033.0,265.1,PASS

@@ -116,7 +116,8 @@ static void softmax_cpu(const float* x, float* y, int rows, int cols) {
 
 int main(int argc, char** argv) {
   print_device_info();
-  const int rows = arg_int(argc, argv, "--rows", 16384);
+  // 默认 65536×1024×4 B = 256 MB，大于 RTX 5090 的 96 MB L2，测到的是显存带宽而不是 L2 带宽。
+  const int rows = arg_int(argc, argv, "--rows", 65536);
   const int cols = 1024;  // v3 是按 1024 列实例化的模板，这里固定列数
   const int warmup = arg_int(argc, argv, "--warmup", 5);
   const int iters = arg_int(argc, argv, "--iters", 20);

@@ -1,0 +1,9 @@
+# device: NVIDIA GeForce RTX 5090, sm_120, SMs=170, smem/block=99 KB
+# device-to-device copy bandwidth: 1522.2 GB/s
+
+== Softmax rows=65536 cols=1024 ==
+version                    ms       GB/s    %copy  max_abs_err check
+v0_thread_row           1.992      269.5    17.7%     4.66e-08 PASS
+v1_block_row            0.351     1529.7   100.5%     3.73e-09 PASS
+v2_online               0.353     1522.7   100.0%     5.59e-09 PASS
+v3_warp_register        0.359     1495.2    98.2%     5.59e-09 PASS

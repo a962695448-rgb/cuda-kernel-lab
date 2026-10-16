@@ -11,6 +11,8 @@ SECTIONS = [
     ("softmax.csv", "Softmax", ["version", "rows", "cols", "ms", "gbs", "pct_copy_bw", "check"]),
     ("rmsnorm.csv", "RMSNorm", ["version", "rows", "hidden", "ms", "gbs", "pct_copy_bw", "check"]),
     ("transpose.csv", "矩阵转置", ["version", "M", "N", "ms", "gbs", "pct_copy_bw", "check"]),
+    ("transpose_l2.csv", "补充实验：转置 2048×2048（16 MB，可放进 L2）", ["version", "M", "N", "ms", "gbs", "check"]),
+    ("reduce_l2.csv", "补充实验：Reduce 2²² 个 float（16 MB，可放进 L2）", ["version", "n", "ms", "gbs", "check"]),
 ]
 
 

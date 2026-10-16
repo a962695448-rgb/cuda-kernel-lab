@@ -1,0 +1,4 @@
+op,version,rows,hidden,ms,gbs,pct_copy_bw,max_abs_err,check
+rmsnorm,v0_thread_row,8192,4096,1.0358,259.2,17.0,4.768e-06,PASS
+rmsnorm,v1_block_smem,8192,4096,0.1751,1533.3,100.7,4.768e-07,PASS
+rmsnorm,v2_vec4_shuffle,8192,4096,0.1748,1535.5,100.9,4.768e-07,PASS

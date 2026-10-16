@@ -1,0 +1,9 @@
+# device: NVIDIA GeForce RTX 5090, sm_120, SMs=170, smem/block=99 KB
+# device-to-device copy bandwidth: 1521.3 GB/s
+
+== Reduce sum, n=67108864 (256 MB) ==
+version                  ms       GB/s    %copy      rel_err check
+cub                   0.165     1631.4   107.2%     2.84e-08 PASS
+v0_interleaved        0.332      808.2    53.1%     1.50e-07 PASS
+v1_sequential         0.331      810.2    53.3%     3.12e-08 PASS
+v2_shuffle            0.164     1639.0   107.7%     9.08e-08 PASS

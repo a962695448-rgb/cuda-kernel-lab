@@ -1,0 +1,5 @@
+op,version,rows,cols,ms,gbs,pct_copy_bw,max_abs_err,check
+softmax,v0_thread_row,65536,1024,1.9919,269.5,17.7,4.657e-08,PASS
+softmax,v1_block_row,65536,1024,0.3510,1529.7,100.5,3.725e-09,PASS
+softmax,v2_online,65536,1024,0.3526,1522.7,100.0,5.588e-09,PASS
+softmax,v3_warp_register,65536,1024,0.3591,1495.2,98.2,5.588e-09,PASS

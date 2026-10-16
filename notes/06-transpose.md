@@ -23,18 +23,23 @@
 - 显存以 32 字节的 sector 为单位传输。合并访存时，一个 warp 的 32 次 4 字节写入合成 4 个 sector。v0 的 32 次写分别落在 32 个不同的 sector，有效利用率只有 4/32 = 1/8。
 
 **Q2：怎么用工具证明 bank conflict 存在？**
-- 用 ncu 看 `l1tex__data_bank_conflicts_pipe_lsu_mem_shared_op_ld.sum`：v1 应该远大于 0，v2 接近 0。`scripts/ncu_profile.sh` 已经抓了这个指标。
+- 用 ncu 看 `l1tex__data_bank_conflicts_pipe_lsu_mem_shared_op_ld.sum`：v1 应该远大于 0，v2 接近 0。`scripts/ncu_profile.sh` 会抓这个指标（前提是机器允许 profiling）。
+- 不能用 ncu 时，用控制变量实验：把矩阵缩小到能放进 L2，让显存不再是瓶颈，冲突的代价就会显现出来（见下面的实测结果）。
 
 **Q3：转置的理想性能是多少？**
 - 它和 device-to-device 拷贝的访存量完全相同（读一遍 + 写一遍），所以"占拷贝带宽的百分比"就是很好的效率指标。v2 应该接近拷贝带宽。
 
-## 跑完后填写
+## 实测结果（RTX 5090，CUDA 12.8，2026-10-16 实测；数据来自 `results/`）
 
-| 版本 | GB/s | 占拷贝带宽 | ncu 共享内存读 bank conflict 数 |
-|---|---|---|---|
-| v0 |  |  | — |
-| v1 |  |  |  |
-| v2 |  |  |  |
+| 版本 | 8192×8192（256 MB） | 2048×2048（16 MB，可放进 L2） |
+|---|---|---|
+| v0 朴素 | 806 GB/s | 763 GB/s |
+| v1 共享内存，有 bank conflict | 1,438 GB/s | 2,325 GB/s |
+| v2 padding [32][33] | **1,462 GB/s**（拷贝带宽的 96%） | **4,033 GB/s** |
+
+- 大矩阵上 v1 和 v2 只差 1.6%：瓶颈在显存带宽，bank conflict 的代价被掩盖了。
+- **数据放进 L2 后，显存不再是瓶颈，padding 版本快了 1.73 倍。** 这就直接证明了 bank conflict 的代价。这次租的云服务器关闭了性能计数器，ncu 抓不到冲突次数，就用这种控制变量的实验来证明。
+- 结论：**同一个优化在不同的瓶颈下收益完全不同**，要先判断瓶颈在哪。
 
 ## 练习
 

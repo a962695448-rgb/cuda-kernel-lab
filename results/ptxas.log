@@ -1,0 +1,149 @@
+[  8%] Building CUDA object CMakeFiles/sgemm.dir/src/sgemm.cu.o
+[ 25%] Building CUDA object CMakeFiles/softmax.dir/src/softmax.cu.o
+[ 25%] Building CUDA object CMakeFiles/transpose.dir/src/transpose.cu.o
+[ 33%] Building CUDA object CMakeFiles/reduce.dir/src/reduce.cu.o
+[ 41%] Building CUDA object CMakeFiles/rmsnorm.dir/src/rmsnorm.cu.o
+[ 50%] Building CUDA object CMakeFiles/hgemm_wmma.dir/src/hgemm_wmma.cu.o
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z14transpose_smemILi1EEvPKfPfii' for 'sm_120'
+ptxas info    : Function properties for _Z14transpose_smemILi1EEvPKfPfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 26 registers, used 1 barriers, 4224 bytes smem
+ptxas info    : Compile time = 5.882 ms
+ptxas info    : Compiling entry function '_Z14transpose_smemILi0EEvPKfPfii' for 'sm_120'
+ptxas info    : Function properties for _Z14transpose_smemILi0EEvPKfPfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 26 registers, used 1 barriers, 4096 bytes smem
+ptxas info    : Compile time = 4.424 ms
+ptxas info    : Compiling entry function '_Z18transpose_v0_naivePKfPfii' for 'sm_120'
+ptxas info    : Function properties for _Z18transpose_v0_naivePKfPfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 26 registers, used 0 barriers
+ptxas info    : Compile time = 2.813 ms
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z23rmsnorm_v2_vec4_shufflePKfS0_Pfiif' for 'sm_120'
+ptxas info    : Function properties for _Z23rmsnorm_v2_vec4_shufflePKfS0_Pfiif
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 36 registers, used 1 barriers, 144 bytes smem
+ptxas info    : Compile time = 16.890 ms
+ptxas info    : Compiling entry function '_Z21rmsnorm_v1_block_smemPKfS0_Pfiif' for 'sm_120'
+ptxas info    : Function properties for _Z21rmsnorm_v1_block_smemPKfS0_Pfiif
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 18 registers, used 1 barriers
+ptxas info    : Compile time = 7.652 ms
+ptxas info    : Compiling entry function '_Z21rmsnorm_v0_thread_rowPKfS0_Pfiif' for 'sm_120'
+ptxas info    : Function properties for _Z21rmsnorm_v0_thread_rowPKfS0_Pfiif
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 39 registers, used 0 barriers
+ptxas info    : Compile time = 13.044 ms
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z24softmax_v3_warp_registerILi1024EEvPKfPfi' for 'sm_120'
+ptxas info    : Function properties for _Z24softmax_v3_warp_registerILi1024EEvPKfPfi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 48 registers, used 0 barriers
+ptxas info    : Compile time = 17.545 ms
+ptxas info    : Compiling entry function '_Z17softmax_v2_onlinePKfPfii' for 'sm_120'
+ptxas info    : Function properties for _Z17softmax_v2_onlinePKfPfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 26 registers, used 1 barriers, 264 bytes smem
+ptxas info    : Compile time = 13.533 ms
+ptxas info    : Compiling entry function '_Z20softmax_v1_block_rowPKfPfii' for 'sm_120'
+ptxas info    : Function properties for _Z20softmax_v1_block_rowPKfPfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 16 registers, used 1 barriers, 264 bytes smem
+ptxas info    : Compile time = 8.862 ms
+ptxas info    : Compiling entry function '_Z21softmax_v0_thread_rowPKfPfii' for 'sm_120'
+ptxas info    : Function properties for _Z21softmax_v0_thread_rowPKfPfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 38 registers, used 0 barriers
+ptxas info    : Compile time = 24.965 ms
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z13hgemm_v1_wmmaILi64ELi64ELi32EEviiiPK6__halfS2_Pf' for 'sm_120'
+ptxas info    : Function properties for _Z13hgemm_v1_wmmaILi64ELi64ELi32EEviiiPK6__halfS2_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 63 registers, used 1 barriers, 8192 bytes smem
+ptxas info    : Compile time = 23.258 ms
+ptxas info    : Compiling entry function '_Z13hgemm_v0_smemILi32EEviiiPK6__halfS2_Pf' for 'sm_120'
+ptxas info    : Function properties for _Z13hgemm_v0_smemILi32EEviiiPK6__halfS2_Pf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 38 registers, used 1 barriers, 8192 bytes smem
+ptxas info    : Compile time = 4.326 ms
+[ 58%] Linking CUDA executable transpose
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z22sgemm_v5_double_bufferILi128ELi128ELi8ELi8ELi8EEviiifPKfS1_fPf' for 'sm_120'
+ptxas info    : Function properties for _Z22sgemm_v5_double_bufferILi128ELi128ELi8ELi8ELi8EEviiifPKfS1_fPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 119 registers, used 1 barriers, 16384 bytes smem
+ptxas info    : Compile time = 44.858 ms
+ptxas info    : Compiling entry function '_Z18sgemm_v4_vectorizeILi128ELi128ELi8ELi8ELi8EEviiifPKfS1_fPf' for 'sm_120'
+ptxas info    : Function properties for _Z18sgemm_v4_vectorizeILi128ELi128ELi8ELi8ELi8EEviiifPKfS1_fPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 103 registers, used 1 barriers, 8192 bytes smem
+ptxas info    : Compile time = 40.640 ms
+ptxas info    : Compiling entry function '_Z16sgemm_v3_2d_tileILi128ELi128ELi8ELi8ELi8EEviiifPKfS1_fPf' for 'sm_120'
+ptxas info    : Function properties for _Z16sgemm_v3_2d_tileILi128ELi128ELi8ELi8ELi8EEviiifPKfS1_fPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 128 registers, used 1 barriers, 8192 bytes smem
+ptxas info    : Compile time = 44.766 ms
+ptxas info    : Compiling entry function '_Z16sgemm_v2_1d_tileILi64ELi64ELi8ELi8EEviiifPKfS1_fPf' for 'sm_120'
+ptxas info    : Function properties for _Z16sgemm_v2_1d_tileILi64ELi64ELi8ELi8EEviiifPKfS1_fPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 49 registers, used 1 barriers, 4096 bytes smem
+ptxas info    : Compile time = 7.951 ms
+ptxas info    : Compiling entry function '_Z13sgemm_v1_smemILi32EEviiifPKfS1_fPf' for 'sm_120'
+ptxas info    : Function properties for _Z13sgemm_v1_smemILi32EEviiifPKfS1_fPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 38 registers, used 1 barriers, 8192 bytes smem
+ptxas info    : Compile time = 4.159 ms
+ptxas info    : Compiling entry function '_Z14sgemm_v0_naiveiiifPKfS0_fPf' for 'sm_120'
+ptxas info    : Function properties for _Z14sgemm_v0_naiveiiifPKfS0_fPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 40 registers, used 0 barriers
+ptxas info    : Compile time = 5.430 ms
+[ 58%] Built target transpose
+[ 66%] Linking CUDA executable rmsnorm
+[ 66%] Built target rmsnorm
+[ 75%] Linking CUDA executable softmax
+[ 75%] Built target softmax
+[ 83%] Linking CUDA executable hgemm_wmma
+[ 83%] Built target hgemm_wmma
+[ 91%] Linking CUDA executable sgemm
+[ 91%] Built target sgemm
+ptxas info    : 39 bytes gmem
+ptxas info    : Compiling entry function '_ZN3cub18CUB_200700_1200_NS28DeviceReduceSingleTileKernelINS0_18DeviceReducePolicyIfjN4cuda3std3__44plusIvEEE9Policy600EPfSA_iS7_ffNS5_10__identityEEEvT0_T1_T2_T3_T4_T6_' for 'sm_120'
+ptxas info    : Function properties for _ZN3cub18CUB_200700_1200_NS28DeviceReduceSingleTileKernelINS0_18DeviceReducePolicyIfjN4cuda3std3__44plusIvEEE9Policy600EPfSA_iS7_ffNS5_10__identityEEEvT0_T1_T2_T3_T4_T6_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 39 registers, used 1 barriers, 48 bytes smem
+ptxas info    : Compile time = 27.619 ms
+ptxas info    : Compiling entry function '_ZN3cub18CUB_200700_1200_NS18DeviceReduceKernelINS0_18DeviceReducePolicyIfjN4cuda3std3__44plusIvEEE9Policy600EPfjS7_fNS5_10__identityEEEvT0_PT3_T1_NS0_13GridEvenShareISF_EET2_T4_' for 'sm_120'
+ptxas info    : Function properties for _ZN3cub18CUB_200700_1200_NS18DeviceReduceKernelINS0_18DeviceReducePolicyIfjN4cuda3std3__44plusIvEEE9Policy600EPfjS7_fNS5_10__identityEEEvT0_PT3_T1_NS0_13GridEvenShareISF_EET2_T4_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, used 1 barriers, 48 bytes smem
+ptxas info    : Compile time = 19.374 ms
+ptxas info    : Compiling entry function '_ZN3cub18CUB_200700_1200_NS28DeviceReduceSingleTileKernelINS0_18DeviceReducePolicyIfjN4cuda3std3__44plusIvEEE9Policy600EPfSA_jS7_ffNS5_10__identityEEEvT0_T1_T2_T3_T4_T6_' for 'sm_120'
+ptxas info    : Function properties for _ZN3cub18CUB_200700_1200_NS28DeviceReduceSingleTileKernelINS0_18DeviceReducePolicyIfjN4cuda3std3__44plusIvEEE9Policy600EPfSA_jS7_ffNS5_10__identityEEEvT0_T1_T2_T3_T4_T6_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 39 registers, used 1 barriers, 48 bytes smem
+ptxas info    : Compile time = 21.997 ms
+ptxas info    : Compiling entry function '_ZN3cub18CUB_200700_1200_NS11EmptyKernelIvEEvv' for 'sm_120'
+ptxas info    : Function properties for _ZN3cub18CUB_200700_1200_NS11EmptyKernelIvEEvv
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 4 registers, used 0 barriers
+ptxas info    : Compile time = 0.484 ms
+ptxas info    : Compiling entry function '_Z17reduce_v2_shufflePKfPfi' for 'sm_120'
+ptxas info    : Function properties for _Z17reduce_v2_shufflePKfPfi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 36 registers, used 1 barriers, 144 bytes smem
+ptxas info    : Compile time = 7.553 ms
+ptxas info    : Compiling entry function '_Z20reduce_v1_sequentialPKfPfi' for 'sm_120'
+ptxas info    : Function properties for _Z20reduce_v1_sequentialPKfPfi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 1 barriers
+ptxas info    : Compile time = 1.910 ms
+ptxas info    : Compiling entry function '_Z21reduce_v0_interleavedPKfPfi' for 'sm_120'
+ptxas info    : Function properties for _Z21reduce_v0_interleavedPKfPfi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 12 registers, used 1 barriers
+ptxas info    : Compile time = 1.972 ms
+[100%] Linking CUDA executable reduce
+[100%] Built target reduce

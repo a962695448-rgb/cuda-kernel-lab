@@ -1,0 +1,19 @@
+# device: NVIDIA GeForce RTX 5090, sm_120, SMs=170, smem/block=99 KB
+
+== HGEMM (fp16 in, fp32 acc) M=N=K=1024 ==
+version                    ms     TFLOPS   %cuBLAS  max_abs_err check
+cublas_tensorcore       0.025      86.70    100.0%     0.00e+00 PASS
+v0_cuda_core            0.249       8.63     10.0%     8.77e-05 PASS
+v1_wmma                 0.046      46.44     53.6%     6.48e-05 PASS
+
+== HGEMM (fp16 in, fp32 acc) M=N=K=2048 ==
+version                    ms     TFLOPS   %cuBLAS  max_abs_err check
+cublas_tensorcore       0.108     159.21    100.0%     0.00e+00 PASS
+v0_cuda_core            1.742       9.86      6.2%     3.13e-04 PASS
+v1_wmma                 0.175      98.09     61.6%     0.00e+00 PASS
+
+== HGEMM (fp16 in, fp32 acc) M=N=K=4096 ==
+version                    ms     TFLOPS   %cuBLAS  max_abs_err check
+cublas_tensorcore       0.763     180.04    100.0%     0.00e+00 PASS
+v0_cuda_core           14.465       9.50      5.3%     8.54e-04 PASS
+v1_wmma                 1.195     115.05     63.9%     0.00e+00 PASS

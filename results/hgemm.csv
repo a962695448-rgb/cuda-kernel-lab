@@ -1,0 +1,10 @@
+op,version,M,N,K,ms,tflops,pct_cublas,max_abs_err,check
+hgemm,cublas_tensorcore,1024,1024,1024,0.0248,86.70,100.0,0.000e+00,PASS
+hgemm,v0_cuda_core,1024,1024,1024,0.2488,8.63,10.0,8.774e-05,PASS
+hgemm,v1_wmma,1024,1024,1024,0.0462,46.44,53.6,6.485e-05,PASS
+hgemm,cublas_tensorcore,2048,2048,2048,0.1079,159.21,100.0,0.000e+00,PASS
+hgemm,v0_cuda_core,2048,2048,2048,1.7420,9.86,6.2,3.128e-04,PASS
+hgemm,v1_wmma,2048,2048,2048,0.1751,98.09,61.6,0.000e+00,PASS
+hgemm,cublas_tensorcore,4096,4096,4096,0.7634,180.04,100.0,0.000e+00,PASS
+hgemm,v0_cuda_core,4096,4096,4096,14.4648,9.50,5.3,8.545e-04,PASS
+hgemm,v1_wmma,4096,4096,4096,1.1946,115.05,63.9,0.000e+00,PASS

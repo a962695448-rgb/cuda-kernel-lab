@@ -1,0 +1,5 @@
+op,version,n,ms,gbs,pct_copy_bw,rel_err,check
+reduce,cub,67108864,0.1645,1631.4,107.2,2.841e-08,PASS
+reduce,v0_interleaved,67108864,0.3321,808.2,53.1,1.504e-07,PASS
+reduce,v1_sequential,67108864,0.3313,810.2,53.3,3.119e-08,PASS
+reduce,v2_shuffle,67108864,0.1638,1639.0,107.7,9.080e-08,PASS

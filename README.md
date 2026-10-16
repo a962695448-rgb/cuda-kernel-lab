@@ -16,7 +16,7 @@
 
 ## 运行
 
-需要 CUDA 12.x、CMake ≥ 3.20 和 NVIDIA GPU。默认按 RTX 4090（sm_89）编译。
+需要 CUDA 12.x、CMake ≥ 3.20 和 NVIDIA GPU。`run_all.sh` 会自动识别显卡架构（RTX 4090 为 sm_89，RTX 5090 为 sm_120，后者需要 CUDA ≥ 12.8）。
 
 ```bash
 bash scripts/run_all.sh          # 编译 + 全部基准 → results/SUMMARY.md
@@ -24,11 +24,11 @@ bash scripts/ncu_profile.sh      # Nsight Compute 指标 → results/ncu/
 ./build/sgemm --sizes 4096 --only v5_double_buffer   # 单独跑某个版本
 ```
 
-其他 GPU 用 `bash scripts/run_all.sh 80`（A100）这样的方式指定架构。
+也可以手动指定架构，例如 `bash scripts/run_all.sh 80`（A100）。
 
 ## 结果
 
-在 RTX 4090 上实测后填写，见 `results/SUMMARY.md`。
+实测后填写，见 `results/SUMMARY.md`。
 
 ## 学习笔记
 
